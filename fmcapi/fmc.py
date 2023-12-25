@@ -54,7 +54,7 @@ class FMC(object):
         timeout=5,
         wait_time=15,
         api_key=None,
-        uuid=None
+        uuid=None,
     ):
         """
         Instantiate some variables prior to calling the __enter__() method.
@@ -224,7 +224,7 @@ class FMC(object):
                     "Content-Type": "application/json",
                     "X-auth-access-token": self.mytoken.get_token(),
                 }
-        
+
         status_code = 429
         response = None
         json_response = None
@@ -293,7 +293,9 @@ class FMC(object):
                         }
                         status_code = 429
                     else:
-                        logging.warning("Received HTTP Code 401 from FMC. Please check that your API key is valid and has the correct permissions in CDO/FMC")
+                        logging.warning(
+                            "Received HTTP Code 401 from FMC. Please check that your API key is valid and has the correct permissions in CDO/FMC"
+                        )
                 if status_code == 422:
                     logging.warning(
                         "Either:\n\t1. Payload too large.  FMC can only handle a payload of "
